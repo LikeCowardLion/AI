@@ -18,7 +18,7 @@
 
 최적화된 UDP 서버 실행:
 ```bash
-python optimized_test.py
+python udp_server.py
 ```
 
 ### 2. 설정 변경
@@ -31,7 +31,7 @@ server = PuckUDPServer(
     listen_port=8080,           # 수신 포트
     unity_ip="127.0.0.1",       # Unity IP
     unity_port=8082,            # Unity 포트
-    buffer_size=4096            # 버퍼 크기
+    buffer_size=1024            # 버퍼 크기
 )
 ```
 
