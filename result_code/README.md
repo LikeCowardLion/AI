@@ -12,34 +12,6 @@
 - **데이터 검증 및 전처리**: 센서 데이터의 유효성 검증 및 정규화
 - **성능 모니터링**: 실시간 처리 통계 및 성능 지표 제공
 
-## 시스템 요구사항
-
-- Python 3.8 이상
-- TensorFlow 2.10.0 이상
-- 필요한 패키지: `requirements.txt` 참조
-
-## 설치 방법
-
-1. 저장소 클론
-```bash
-git clone <repository-url>
-cd puck
-```
-
-2. 가상환경 생성 및 활성화
-```bash
-python -m venv venv
-# Windows
-venv\Scripts\activate
-# Linux/Mac
-source venv/bin/activate
-```
-
-3. 의존성 설치
-```bash
-pip install -r requirements.txt
-```
-
 ## 사용 방법
 
 ### 1. 기본 실행
@@ -51,7 +23,7 @@ python optimized_test.py
 
 ### 2. 설정 변경
 
-`optimized_test.py`에서 다음 설정을 변경할 수 있습니다:
+`udp_server.py`에서 다음 설정을 변경할 수 있습니다:
 
 ```python
 server = PuckUDPServer(
@@ -84,14 +56,12 @@ Unity로 전송되는 예측 결과 형식:
 
 ```
 puck/
-├── optimized_model_predict.py  # 최적화된 모델 예측 클래스
-├── optimized_test.py          # 최적화된 UDP 서버
-├── data_processor.py          # 데이터 전처리 클래스
-├── requirements.txt           # 의존성 패키지 목록
+├── model_predict.py          # 모델 예측 클래스
+├── udp_server.py         # UDP 서버
+├── data_processor.py         # 데이터 전처리
 ├── README.md                 # 프로젝트 설명서
-├── model123.h5              # 학습된 AI 모델
-├── scaler.pkl               # 데이터 스케일러
-└── 기존 파일들...
+├── model123.h5               # 학습된 AI 모델 / 실제 사용 모델 X
+└── scaler.pkl                # 데이터 스케일러 / 실제 사용 스케일러 X
 ```
 
 ## 주요 최적화 사항
@@ -116,7 +86,7 @@ puck/
 ### PuckPredictor 클래스
 
 ```python
-from optimized_model_predict import PuckPredictor
+from model_predict import PuckPredictor
 
 # 예측기 초기화
 predictor = PuckPredictor()
@@ -151,20 +121,5 @@ success, processed_data, message = processor.process_sensor_data(raw_data)
 
 3. **데이터 형식 오류**
    - 센서 데이터가 올바른 형식인지 확인
+   - 데이터의 column명 확인
    - 10행의 6열 데이터인지 확인
-
-## 기여 방법
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
-
-## 라이선스
-
-이 프로젝트는 MIT 라이선스 하에 배포됩니다.
-
-## 연락처
-
-프로젝트 관련 문의사항이 있으시면 이슈를 생성해주세요. 
